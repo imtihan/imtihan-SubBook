@@ -5,4 +5,5 @@
     <string name="Date">Date:</string>
     <string name="MonthlyCharge">Monthly Charge:</string>
     <string name="Comment">Comment: </string>
+    <string name="Add">Add</string>
 </resources>

@@ -2,19 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/subForm"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="top"
     android:orientation="vertical">
 
     <EditText
         android:id="@+id/Name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:selectAllOnFocus="true"
         android:singleLine="true"
-        android:text="@string/Name"/>
+        android:text="@string/Name" />
 
     <EditText
         android:id="@+id/Date"
@@ -41,4 +42,10 @@
         android:ems="10"
         android:inputType="textMultiLine"
         android:text="@string/Comment" />
+
+    <Button
+        android:id="@+id/AddSubscription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Add" />
 </LinearLayout>
