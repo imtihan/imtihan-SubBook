@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">imtihan-SubBook</string>
     <string name="action_settings">Settings</string>
+    <string name="Name">Name:</string>
+    <string name="Date">Date:</string>
+    <string name="MonthlyCharge">Monthly Charge:</string>
+    <string name="Comment">Comment: </string>
 </resources>

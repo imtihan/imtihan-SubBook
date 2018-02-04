@@ -1,5 +1,6 @@
 package com.example.imtih.imtihan_subbook;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 public class SubBookMainActivity extends AppCompatActivity {
 
     private static final String FILENAME = "datalist.sav";
-    private ListView oldSubscriptions;
+    private ListView SubList;
 
     private ArrayList<Subscription> subscriptionlist;
     private ArrayAdapter<Subscription> adapter;
@@ -33,14 +34,16 @@ public class SubBookMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_book_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton addSubButton = (FloatingActionButton) findViewById(R.id.addSub);
+        addSubButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                openAddSubscriber();
+                Snackbar.make(view, "Add Subscription", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -74,7 +77,8 @@ public class SubBookMainActivity extends AppCompatActivity {
         loadFromFile();
         adapter = new ArrayAdapter<Subscription>(this,
                 R.layout.content_sub_book_main, subscriptionlist);
-        oldSubscriptions.setAdapter(adapter);
+        //SubList.setAdapter(adapter);
+
     }
 
     private void loadFromFile(){
@@ -95,6 +99,11 @@ public class SubBookMainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void openAddSubscriber(){
+        Intent intent = new Intent(this, addSubscriber.class);
+        startActivity(intent);
     }
 
 
