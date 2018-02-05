@@ -1,3 +1,8 @@
+
+/*
+ * Copyright (c) University of Alberta -All Rights Reserved.
+ */
+
 package com.example.imtih.imtihan_subbook;
 
 import android.app.DatePickerDialog;
@@ -28,6 +33,15 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+/**
+ * This editItem activity opens an activity that displays the current Subscriber object
+ * that is selected.
+ * It allows for editing the subscription and to delete it if one so prefers
+ *
+ * @see Subscription
+ * @see SubBookMainActivity
+ * @see addSubscriber
+ */
 public class editItem extends AppCompatActivity {
     private static final String FILENAME = "datalist.sav";
     private int index;

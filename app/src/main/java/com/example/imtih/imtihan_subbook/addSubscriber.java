@@ -1,3 +1,8 @@
+
+/*
+ * Copyright (c) University of Alberta -All Rights Reserved.
+ */
+
 package com.example.imtih.imtihan_subbook;
 
 import android.app.DatePickerDialog;
@@ -31,6 +36,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
+/**
+ * addSubscriber class opens a new activity page
+ * in which the user is able to add a new subscription
+ * This subscription is written onto the file for permanance
+ *
+ * @author imtihan
+ * @version 1.0
+ * @see SubBookMainActivity
+ * @see Subscription
+ * @see editItem
+ */
 public class addSubscriber extends AppCompatActivity {
 
     private static final String FILENAME = "datalist.sav";
@@ -47,6 +63,10 @@ public class addSubscriber extends AppCompatActivity {
     private float chargeFloat;
     private String dateString;
     @Override
+
+    /**
+     * Displays and detects changes to the displayed fields
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_subscription);
@@ -116,6 +136,10 @@ public class addSubscriber extends AppCompatActivity {
         });
 
     }
+
+    /**
+     * loads subscription data from files
+     */
     private void loadFromFile(){
         try {
             FileInputStream fis = openFileInput(FILENAME);
@@ -133,6 +157,10 @@ public class addSubscriber extends AppCompatActivity {
             subscriptionlist = new ArrayList<Subscription>();
         }
     }
+
+    /**
+     * saves subscription data to file
+     */
     private void saveToFile(){
         try {
             FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);

@@ -1,3 +1,8 @@
+
+/*
+ * Copyright (c) University of Alberta -All Rights Reserved.
+ */
+
 package com.example.imtih.imtihan_subbook;
 
 import android.content.Intent;
