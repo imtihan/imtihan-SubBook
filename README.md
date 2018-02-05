@@ -44,5 +44,3 @@ Use your campus computing ID in the app name. Specifically, the app name must sh
 # [apk-release file](https://github.com/imtihan/imtihan-SubBook/tree/master/app/release)
 
 
-apk file in app/release
-UML diagram in doc/ 
