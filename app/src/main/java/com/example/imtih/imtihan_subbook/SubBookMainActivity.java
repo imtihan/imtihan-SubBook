@@ -97,8 +97,6 @@ public class SubBookMainActivity extends AppCompatActivity {
 
         } catch (FileNotFoundException e) {
             subscriptionlist = new ArrayList<Subscription>();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
