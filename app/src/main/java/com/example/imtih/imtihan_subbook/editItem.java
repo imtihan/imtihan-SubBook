@@ -52,7 +52,9 @@ public class editItem extends AppCompatActivity {
     private EditText name;
     private EditText comment;
     private Calendar mydate;
-    private int day, month, year;
+    private int day;
+    private int month;
+    private int year;
     private String nameString;
     private String commentString;
     private float chargeFloat;
