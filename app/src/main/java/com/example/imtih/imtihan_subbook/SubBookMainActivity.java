@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -42,6 +43,14 @@ public class SubBookMainActivity extends AppCompatActivity {
 
         SubList = (ListView) findViewById(R.id.SubList);
 
+        SubList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                openEditSubscription(position);
+                Snackbar.make(view, "Changes Saved", Snackbar.LENGTH_LONG).show();
+                loadFromFile();
+            }
+        });
         FloatingActionButton addSubButton = (FloatingActionButton) findViewById(R.id.addSub);
         addSubButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,9 +59,11 @@ public class SubBookMainActivity extends AppCompatActivity {
                 Snackbar.make(view, "Subscription Saved", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 loadFromFile();
-                //adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
         });
+
+
     }
 
     @Override
@@ -108,6 +119,14 @@ public class SubBookMainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, addSubscriber.class);
         startActivity(intent);
 
+    }
+
+    private void openEditSubscription(int val){
+        Intent intent = new Intent(this, editItem.class);
+        Bundle b = new Bundle();
+        b.putInt(getString(R.string.index), val);
+        intent.putExtras(b);
+        startActivity(intent);
     }
 
 

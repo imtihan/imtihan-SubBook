@@ -17,6 +17,7 @@ public class Subscription {
     Subscription(){
 
     }
+
     Subscription(String name, String date, float charge, String comment){
         this.name = name;
         this.date = date;

@@ -11,4 +11,7 @@
     <string name="ChargeTitle">Monthly Charge</string>
     <string name="CommentsTitle">Comments:</string>
     <string name="Blank"></string>
+    <string name="Save">Save</string>
+    <string name="Delete">Delete</string>
+    <string name="index">index</string>
 </resources>

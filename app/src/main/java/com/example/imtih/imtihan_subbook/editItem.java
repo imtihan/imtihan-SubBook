@@ -2,16 +2,15 @@ package com.example.imtih.imtihan_subbook;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputFilter;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -26,16 +25,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
 
-public class addSubscriber extends AppCompatActivity {
-
+public class editItem extends AppCompatActivity {
     private static final String FILENAME = "datalist.sav";
+    private int index;
     private ArrayList<Subscription> subscriptionlist;
-
+    private Subscription sub = new Subscription();
     private EditText date;
     private EditText charge;
     private EditText name;
@@ -49,20 +46,23 @@ public class addSubscriber extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_subscription);
+        setContentView(R.layout.activity_edit_item);
+        Bundle b = getIntent().getExtras();
+        index = b.getInt("index");
         loadFromFile();
-
-        Button save = (Button) findViewById(R.id.AddSubscription);
+        sub = subscriptionlist.get(index);
+        Button save = (Button) findViewById(R.id.saveButton);
+        Button delete = (Button) findViewById(R.id.deleteButton);
         date = (EditText) findViewById(R.id.Date);
         charge = (EditText) findViewById(R.id.Charge);
         name = (EditText) findViewById(R.id.Name);
         comment = (EditText) findViewById(R.id.Comment);
 
 
-        mydate = Calendar.getInstance();
-        day = mydate.get(Calendar.DAY_OF_MONTH);
-        month = mydate.get(Calendar.MONTH);
-        year = mydate.get(Calendar.YEAR);
+        date.setText(sub.getDate());
+        charge.setText(sub.getCharge());
+        name.setText(sub.getName());
+        comment.setText(sub.getComment());
 
         charge.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(7,2)});
 
@@ -70,7 +70,7 @@ public class addSubscriber extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(addSubscriber.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(editItem.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         month = month+1;
@@ -86,16 +86,16 @@ public class addSubscriber extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (name.getText().toString().equals("")){
-                    Toast.makeText(addSubscriber.this, "Name is required", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(editItem.this, "Name is required", Toast.LENGTH_SHORT).show();
                     //Snackbar.make(v, "Name required", Snackbar.LENGTH_LONG)
                     //      .show();
                 } else  if(name.getText().toString().length() > 20){
-                Snackbar.make(v, "Name too long, limit is 20 characters", Snackbar.LENGTH_LONG)
-                        .show();
+                    Snackbar.make(v, "Name too long, limit is 20 characters", Snackbar.LENGTH_LONG)
+                            .show();
                 }  else if (date.getText().toString().equals("")){
-                    Toast.makeText(addSubscriber.this, "Date is required", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(editItem.this, "Date is required", Toast.LENGTH_SHORT).show();
                     //Snackbar.make(v, "Date required", Snackbar.LENGTH_LONG)
-                      //      .show();
+                    //      .show();
                 } else if (comment.getText().toString().length() > 30){
                     Snackbar.make(v, "Comment too long, limit is 30 characters", Snackbar.LENGTH_LONG)
                             .show();
@@ -107,11 +107,20 @@ public class addSubscriber extends AppCompatActivity {
                     dateString = date.getText().toString();
                     chargeFloat = Float.parseFloat(charge.getText().toString());
                     commentString = comment.getText().toString();
-                    Subscription newSub = new Subscription(nameString, dateString, chargeFloat, commentString);
-                    subscriptionlist.add(newSub);
+                    Subscription editedSub = new Subscription(nameString, dateString, chargeFloat, commentString);
+                    subscriptionlist.set(index, editedSub);
                     saveToFile();
                     finish();
                 }
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                subscriptionlist.remove(index);
+                saveToFile();
+                finish();
             }
         });
 
@@ -148,6 +157,5 @@ public class addSubscriber extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 
 }
