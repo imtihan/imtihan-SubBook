@@ -22,7 +22,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:selectAllOnFocus="true"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:text="@string/Blank" />
 
     <TextView
         android:id="@+id/DateTitle"
@@ -40,7 +41,8 @@
         android:ems="10"
         android:focusable="false"
         android:inputType="date"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:text="@string/Blank" />
 
     <TextView
         android:id="@+id/chargeTitle"
@@ -57,7 +59,8 @@
         android:ems="10"
         android:inputType="numberDecimal"
         android:selectAllOnFocus="true"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:text="@string/Blank" />
 
     <TextView
         android:layout_width="match_parent"
@@ -73,7 +76,7 @@
         android:ems="10"
         android:inputType="textMultiLine"
         android:selectAllOnFocus="true"
-        android:text="@string/Comment" />
+        android:text="@string/Blank" />
 
     <Button
         android:id="@+id/AddSubscription"

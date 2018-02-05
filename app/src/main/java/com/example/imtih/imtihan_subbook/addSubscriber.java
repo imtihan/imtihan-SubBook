@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -35,10 +36,10 @@ public class addSubscriber extends AppCompatActivity {
     private static final String FILENAME = "datalist.sav";
     private ArrayList<Subscription> subscriptionlist;
 
-    private TextView date;
-    private TextView charge;
-    private TextView name;
-    private TextView comment;
+    private EditText date;
+    private EditText charge;
+    private EditText name;
+    private EditText comment;
     private Calendar mydate;
     private int day, month, year;
     private String nameString;
@@ -52,17 +53,18 @@ public class addSubscriber extends AppCompatActivity {
         loadFromFile();
 
         Button save = (Button) findViewById(R.id.AddSubscription);
-        date = (TextView) findViewById(R.id.Date);
-        charge = (TextView) findViewById(R.id.Charge);
-        name = (TextView) findViewById(R.id.Name);
-        comment = (TextView) findViewById(R.id.Comment);
+        date = (EditText) findViewById(R.id.Date);
+        charge = (EditText) findViewById(R.id.Charge);
+        name = (EditText) findViewById(R.id.Name);
+        comment = (EditText) findViewById(R.id.Comment);
+        comment = (EditText) findViewById(R.id.Comment);
 
         mydate = Calendar.getInstance();
         day = mydate.get(Calendar.DAY_OF_MONTH);
         month = mydate.get(Calendar.MONTH);
         year = mydate.get(Calendar.YEAR);
 
-        charge.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(5,2)});
+        charge.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(7,2)});
 
         date.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -83,17 +85,28 @@ public class addSubscriber extends AppCompatActivity {
 
         save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                nameString = name.getText().toString();
-                dateString = date.getText().toString();
-                chargeFloat = Float.parseFloat(charge.getText().toString());
-                commentString = comment.getText().toString();
-                if(nameString.length() > 20){
-                    Snackbar.make(v, "Name too long, limit is 20 characters", Snackbar.LENGTH_LONG)
-                            .show();
-                } else if (commentString.length() > 30){
+                if (name.getText().toString().equals("")){
+                    Toast.makeText(addSubscriber.this, "Name is required", Toast.LENGTH_SHORT).show();
+                    //Snackbar.make(v, "Name required", Snackbar.LENGTH_LONG)
+                    //      .show();
+                } else  if(name.getText().toString().length() > 20){
+                Snackbar.make(v, "Name too long, limit is 20 characters", Snackbar.LENGTH_LONG)
+                        .show();
+                }  else if (date.getText().toString().equals("")){
+                    Toast.makeText(addSubscriber.this, "Date is required", Toast.LENGTH_SHORT).show();
+                    //Snackbar.make(v, "Date required", Snackbar.LENGTH_LONG)
+                      //      .show();
+                } else if (comment.getText().toString().length() > 30){
                     Snackbar.make(v, "Comment too long, limit is 30 characters", Snackbar.LENGTH_LONG)
-                           .show();
+                            .show();
+                } else if (charge.getText().toString().equals("")){
+                    Snackbar.make(v, "Monthly charge required", Snackbar.LENGTH_LONG)
+                            .show();
                 } else{
+                    nameString = name.getText().toString();
+                    dateString = date.getText().toString();
+                    chargeFloat = Float.parseFloat(charge.getText().toString());
+                    commentString = comment.getText().toString();
                     Subscription newSub = new Subscription(nameString, dateString, chargeFloat, commentString);
                     subscriptionlist.add(newSub);
                     finish();
