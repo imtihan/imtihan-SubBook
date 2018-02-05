@@ -43,8 +43,9 @@ public class SubBookMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openAddSubscriber();
-                Snackbar.make(view, "Add Subscription", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Subscription Saved", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
             }
         });
     }
@@ -104,6 +105,7 @@ public class SubBookMainActivity extends AppCompatActivity {
     private void openAddSubscriber(){
         Intent intent = new Intent(this, addSubscriber.class);
         startActivity(intent);
+
     }
 
 

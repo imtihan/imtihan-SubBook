@@ -9,7 +9,7 @@ import java.util.Date;
 public class Subscription {
 
     private String name;
-    private Date date;
+    private String date;
     private Charge charge;
     private Comment comment;
 

@@ -24,7 +24,9 @@
         android:ems="10"
         android:inputType="date"
         android:singleLine="true"
-        android:text="@string/Date" />
+        android:text="@string/Date"
+        android:clickable="true"
+        android:focusable="false"/>
 
     <EditText
         android:id="@+id/Charge"
@@ -33,7 +35,9 @@
         android:ems="10"
         android:inputType="numberDecimal"
         android:singleLine="true"
-        tools:text="@string/MonthlyCharge" />
+        android:text="@string/MonthlyCharge"
+        tools:text="@string/MonthlyCharge"
+        android:selectAllOnFocus="true"/>
 
     <EditText
         android:id="@+id/Comment"
@@ -41,7 +45,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textMultiLine"
-        android:text="@string/Comment" />
+        android:text="@string/Comment"
+        android:selectAllOnFocus="true"/>
 
     <Button
         android:id="@+id/AddSubscription"
