@@ -64,7 +64,7 @@ public class addSubscriber extends AppCompatActivity {
         month = mydate.get(Calendar.MONTH);
         year = mydate.get(Calendar.YEAR);
 
-        charge.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(7,2)});
+        charge.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(5,2)});
 
         date.setOnClickListener(new View.OnClickListener(){
             @Override

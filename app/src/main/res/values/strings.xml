@@ -14,4 +14,5 @@
     <string name="Save">Save</string>
     <string name="Delete">Delete</string>
     <string name="index">index</string>
+    <string name="TotalCost">Total Cost: </string>
 </resources>

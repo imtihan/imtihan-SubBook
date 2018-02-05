@@ -59,6 +59,6 @@ public class Subscription {
 
     @Override
     public String toString() {
-        return name + " " + date + " " +String.valueOf(charge) + " " + comment;
+        return "Name: " + name + "\nDate: " + date + "\nMonthly Cost(CAD): " +String.valueOf(charge) + "\n" + comment;
     }
 }

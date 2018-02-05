@@ -11,7 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -30,9 +32,11 @@ public class SubBookMainActivity extends AppCompatActivity {
 
     private static final String FILENAME = "datalist.sav";
     private ListView SubList;
-
+    private TextView costVal;
     private ArrayList<Subscription> subscriptionlist;
     private ArrayAdapter<Subscription> adapter;
+
+    private String totalCost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,15 +44,19 @@ public class SubBookMainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        costVal = (TextView) findViewById(R.id.costVal);
         SubList = (ListView) findViewById(R.id.SubList);
-
+        totalCost = getTotalCost();
+        costVal.setText(totalCost);
         SubList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 openEditSubscription(position);
                 Snackbar.make(view, "Changes Saved", Snackbar.LENGTH_LONG).show();
                 loadFromFile();
+                adapter.notifyDataSetChanged();
+                totalCost = getTotalCost();
+                costVal.setText(totalCost);
             }
         });
         FloatingActionButton addSubButton = (FloatingActionButton) findViewById(R.id.addSub);
@@ -60,6 +68,8 @@ public class SubBookMainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
                 loadFromFile();
                 adapter.notifyDataSetChanged();
+                totalCost = getTotalCost();
+                costVal.setText(totalCost);
             }
         });
 
@@ -94,7 +104,9 @@ public class SubBookMainActivity extends AppCompatActivity {
         loadFromFile();
         adapter = new ArrayAdapter<Subscription>(this,android.R.layout.simple_list_item_1, subscriptionlist);
         SubList.setAdapter(adapter);
-
+        costVal = (TextView) findViewById(R.id.costVal);
+        totalCost = getTotalCost();
+        costVal.setText(totalCost);
     }
 
     private void loadFromFile(){
@@ -129,5 +141,16 @@ public class SubBookMainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private String getTotalCost(){
+        double sum = 0.00;
+        try {
+            for (int i = 0; i < subscriptionlist.size(); i++) {
+                sum += Double.parseDouble(subscriptionlist.get(i).getCharge());
+            }
+            return Double.toString(sum);
+        } catch (Exception e){
+            return Double.toString(sum);
+        }
+    }
 
 }

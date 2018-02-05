@@ -64,7 +64,7 @@ public class editItem extends AppCompatActivity {
         name.setText(sub.getName());
         comment.setText(sub.getComment());
 
-        charge.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(7,2)});
+        charge.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(5,2)});
 
         date.setOnClickListener(new View.OnClickListener(){
             @Override
