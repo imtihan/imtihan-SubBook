@@ -48,11 +48,16 @@ public class Subscription {
         return date;
     }
 
-    public float getCharge() {
-        return charge;
+    public String getCharge() {
+        return String.valueOf(charge);
     }
 
     public String getComment() {
         return comment;
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + date + " " +String.valueOf(charge) + " " + comment;
     }
 }

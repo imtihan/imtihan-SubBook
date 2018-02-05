@@ -23,6 +23,8 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import static com.example.imtih.imtihan_subbook.R.layout.list_item;
+
 public class SubBookMainActivity extends AppCompatActivity {
 
     private static final String FILENAME = "datalist.sav";
@@ -38,6 +40,8 @@ public class SubBookMainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        SubList = (ListView) findViewById(R.id.SubList);
+
         FloatingActionButton addSubButton = (FloatingActionButton) findViewById(R.id.addSub);
         addSubButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +49,8 @@ public class SubBookMainActivity extends AppCompatActivity {
                 openAddSubscriber();
                 Snackbar.make(view, "Subscription Saved", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-
+                loadFromFile();
+                //adapter.notifyDataSetChanged();
             }
         });
     }
@@ -76,9 +81,8 @@ public class SubBookMainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         loadFromFile();
-        adapter = new ArrayAdapter<Subscription>(this,
-                R.layout.content_sub_book_main, subscriptionlist);
-        //SubList.setAdapter(adapter);
+        adapter = new ArrayAdapter<Subscription>(this,android.R.layout.simple_list_item_1, subscriptionlist);
+        SubList.setAdapter(adapter);
 
     }
 

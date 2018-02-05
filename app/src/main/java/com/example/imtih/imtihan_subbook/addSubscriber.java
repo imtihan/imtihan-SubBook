@@ -109,6 +109,7 @@ public class addSubscriber extends AppCompatActivity {
                     commentString = comment.getText().toString();
                     Subscription newSub = new Subscription(nameString, dateString, chargeFloat, commentString);
                     subscriptionlist.add(newSub);
+                    saveToFile();
                     finish();
                 }
             }

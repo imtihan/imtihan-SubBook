@@ -11,8 +11,9 @@
     <ListView
         android:id="@+id/SubList"
         android:layout_width="395dp"
-        android:layout_height="292dp"
-        android:background="@android:color/holo_orange_light"
+        android:layout_height="495dp"
+        android:background="?android:attr/colorPressedHighlight"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
